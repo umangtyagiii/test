@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Joke Generator</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .container {
+                width: 500px;
+                height: 300px;
+                border: 1px solid black;
+                border-radius: 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin: 100px auto;
+            }
+
+            .joke-text {
+                display: flex;
+                margin: 10px;
+            }
+
+            .joke-length {
+                display: flex;
+                margin: 10px;
+            }
+
+            #generate {
+                width: 80px;
+                height: 30px;
+                border-radius: 5px;
+                background-color: yellow;
+                color: black;
+                font-weight: bolder;
+            }
+
+            #clear {
+                width: 80px;
+                height: 30px;
+                border-radius: 5px;
+                background-color: blue;
+                color: white;
+                font-weight: bolder;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Joke Generator</h1>
+            <div class="joke-block">
+                <div class="joke-text">
+                    <p>Joke : </p>
+                    <p id="fill-joke">Hello</p>
+                </div>
+                <div class="joke-length">
+                    <p>Character count: </p>
+                    <p id="count-joke-length">Hello</p>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button id="generate">Generate</button>
+                <button id="clear">Clear</button>
+            </div>
+        </div>
+        <script>
+            const generateBtn = document.getElementById("generate");
+            const clearBtn = document.getElementById("clear");
+
+            generateBtn.addEventListener("click", () => {
+                generateJoke();
+            });
+
+            async function generateJoke() {
+                try {
+                    const response = await fetch("https://v2.jokeapi.dev/joke/Any");
+                    const data = await response.json();
+                    document.getElementById("fill-joke").innerText = data.delivery;
+                    const data_len = JSON.stringify(data.delivery);
+                    const len = data_len.length;
+                    document.getElementById("count-joke-length").innerText = `${len}`;
+                } catch {
+                    // alert("Some Error occured");
+                    console.log("Some Error occured");
+                }
+            }
+
+            clearBtn.addEventListener("click", () => {
+                document.getElementById("fill-joke").innerText = "";
+                document.getElementById("count-joke-length").innerText = "";
+            });
+        </script>
+    </body>
+</html>

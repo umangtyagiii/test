@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .container {
+                border: 1px solid rgba(0, 0, 0, 0.715);
+                width: 300px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                
+                height: 300px;
+                border-radius: 10px;
+                background-color: grey;
+            }
+
+            label,input {
+                padding: 10px;
+            }
+
+            input {
+                width: 80%;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            button {
+                margin: 15px;
+                width: 100px;
+                border-radius: 5px;
+                height: 30px;
+            }
+
+            #submit-btn {
+                background-color: lightgreen;
+                color: white;
+                font-weight: bolder;
+            }
+
+            #reset-btn {
+                background-color: red;
+                color: white;
+                font-weight: bolder;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <h1>LOGIN PAGE</h1>
+            <div class="container">
+                <label for="username"><h4>Username:</h4></label>
+                <input
+                    name="username"
+                    type="text"
+                    placeholder="Username"
+                    id="username-field"
+                />
+                <br />
+                <label for="password"><h4>Password : </h4></label>
+                <input
+                    id="password-field"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                />
+                <div class="btn-container">
+                    <button type="submit" id="submit-btn">Submit</button>
+                    <button type="reset" id="reset-btn">Reset</button>
+                </div>
+            </div>
+        </center>
+        <script>
+            let submitBtn = document.getElementById("submit-btn");
+            let resetBtn = document.getElementById("reset-btn");
+
+            submitBtn.addEventListener("click", () => {
+                let username_data = document.getElementById("username-field").value;
+                let password_data = document.getElementById("password-field").value;
+            
+                if (username_data === "aimlc" && password_data === "aimlc") {
+                    window.location.href = "generator.html";
+                } 
+                else {
+                    alert("Invalid Username or Password");
+                }
+            });
+            resetBtn.addEventListener("click", () => {
+                window.location.href = "main.html";
+            });
+
+           
+        </script>
+    </body>
+</html>
